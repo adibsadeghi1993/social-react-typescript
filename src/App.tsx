@@ -12,6 +12,7 @@ import TextField from "@material-ui/core/TextField";
 import Container from "@material-ui/core/Container/Container";
 
 import "./App.css";
+import AddNewSocial from "./components/AddNewSocial";
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -25,7 +26,7 @@ export default function App() {
         <CssBaseline />
         <div className="app">
           <Container className="container" maxWidth="md">
-            <TextField variant="outlined" label="نام" />
+            <AddNewSocial/>
           </Container>
         </div>
       </ThemeProvider>
