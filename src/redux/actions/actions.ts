@@ -7,20 +7,20 @@ import { Dispatch } from "redux"
 import axios from "axios"
 import communicate from "../../model/model"
 
-export const getUsers=(users:communicate[]):Action=>{
+export const getUserSocials=(users:communicate[]):Action=>{
     return{
       type:actionTypes.GET_USER_CONTACTS,
       payload:users
     }
 }
-export const failedgetUser=():Action=>{
+export const failedGetUserSocials=():Action=>{
     return{
       type:actionTypes.FAILED,
     
     }
 }
 
-export const requestgetUser=():Action=>{
+export const requestSocials=():Action=>{
     return{
       type:actionTypes.LOADING,
     
@@ -41,11 +41,11 @@ export const requestgetUser=():Action=>{
 export const getUserContacts=()=>{
     return async(dispatch:Dispatch)=>{
      try {
-         dispatch(requestgetUser())
+         dispatch(requestSocials())
          const {data}=await axios.get("http://localhost:4000/socials")
-         dispatch(getUsers(data))
+         dispatch(getUserSocials(data))
      } catch (error) {
-         dispatch(failedgetUser())
+         dispatch(failedGetUserSocials())
      }
     }
 }
@@ -53,12 +53,12 @@ export const getUserContacts=()=>{
 // export const deleteUserAction=(id:number)=>{
 //   return async(dispatch:Dispatch)=>{
 //    try {
-//        dispatch(requestgetUser())
+//        dispatch(requestSocials())
 //        await axios.delete(`http://localhost:4000/users/${id}`)
 //       dispatch(userDeleted())
 //       dispatch<any>(getUserAction())
 //    } catch (error) {
-//        dispatch(failedgetUser())
+//        dispatch(failedGetUserSocials())
 //    }
 //   }
 // }
@@ -66,12 +66,12 @@ export const getUserContacts=()=>{
 // export const addNewUserAction=(user:user)=>{
 //   return async(dispatch:Dispatch)=>{
 //    try {
-//        dispatch(requestgetUser())
+//        dispatch(requestSocials())
 //        await axios.post(`http://localhost:4000/users`,user)
 //       dispatch(userAdded())
 //       dispatch<any>(getUserAction())
 //    } catch (error) {
-//        dispatch(failedgetUser())
+//        dispatch(failedGetUserSocials())
 //    }
 //   }
 // }

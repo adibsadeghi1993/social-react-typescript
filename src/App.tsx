@@ -17,6 +17,7 @@ import AddIcon from '@mui/icons-material/Add';
 
 import "./App.css";
 import AddNewSocial from "./components/AddNewSocial";
+import UserLinks from "./components/UserLinks";
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -46,6 +47,7 @@ export default function App() {
               </Typography>
             </Box>
             <AddNewSocial />
+          <UserLinks/>
           </Container>
         </div>
       </ThemeProvider>

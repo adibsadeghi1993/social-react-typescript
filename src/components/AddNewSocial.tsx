@@ -33,8 +33,11 @@ const AddNewSocial = (props: Props) => {
       id: Yup.number().min(1).required("this is should be number"),
     }),
   });
+  const submitHandler=()=>{
+    
+  }
   return (
-    <form>
+    <form onSubmit={submitHandler}>
       <Box sx={{ display: "flex", width: "100%", alignItems: "center" }}>
         <Box sx={{display:"flex" ,flexDirection:"column",flexGrow: 1,width:"28%"}}>
           <FormControl  fullWidth variant="outlined" size="small">
@@ -90,13 +93,13 @@ const AddNewSocial = (props: Props) => {
             onBlur={handleBlur}
             size="small"
             fullWidth
-            // style={{ width: 230 }}
+       
           />
         </Box>
       </Box>
       <Box sx={{display:"flex", justifyContent: 'flex-end',mt:2}}>
       <Button  variant='contained'>انصراف</Button>
-      <Button sx={{mr:2}} variant='contained'>ثبت مسیر ارتباطی</Button>
+      <Button type="submit"  sx={{mr:2}} variant='contained'>ثبت مسیر ارتباطی</Button>
      
       </Box>
     </form>
