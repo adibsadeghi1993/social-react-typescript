@@ -1,13 +1,34 @@
-import React from 'react';
+import React from "react";
+import { create } from "jss";
+import rtl from "jss-rtl";
+import {
+  StylesProvider,
+  jssPreset,
+  ThemeProvider,
+  createTheme,
+} from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import TextField from "@material-ui/core/TextField";
+import Container from "@material-ui/core/Container/Container"
 
-import './App.css';
+import "./App.css"
 
-function App() {
+// Configure JSS
+const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
+
+const rtlTheme = createTheme({ direction: "rtl" });
+
+export default function App() {
   return (
-    <div className="App">
-     
-    </div>
+    <StylesProvider jss={jss}>
+      <ThemeProvider theme={rtlTheme}>
+        <CssBaseline />
+        <Container  maxWidth="sm">
+        <div className="app">
+          <TextField variant="outlined" label="نام" />
+        </div>
+        </Container>
+      </ThemeProvider>
+    </StylesProvider>
   );
 }
-
-export default App;
