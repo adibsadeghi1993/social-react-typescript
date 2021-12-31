@@ -1,8 +1,8 @@
 type communicate={
     id?:number,
-    name:string,
-    link:string,
-    ID:string,
+    social_type:string,
+    social_link:string,
+    social_id:string,
    
 }
 export default communicate

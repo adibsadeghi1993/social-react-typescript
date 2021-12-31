@@ -42,7 +42,7 @@ export const getUserContacts=()=>{
     return async(dispatch:Dispatch)=>{
      try {
          dispatch(requestgetUser())
-         const {data}=await axios.get("http://localhost:4000/users")
+         const {data}=await axios.get("http://localhost:4000/socials")
          dispatch(getUsers(data))
      } catch (error) {
          dispatch(failedgetUser())
