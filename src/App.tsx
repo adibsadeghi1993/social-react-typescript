@@ -9,9 +9,9 @@ import {
 } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import Container from "@material-ui/core/Container/Container"
+import Container from "@material-ui/core/Container/Container";
 
-import "./App.css"
+import "./App.css";
 
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
@@ -23,11 +23,11 @@ export default function App() {
     <StylesProvider jss={jss}>
       <ThemeProvider theme={rtlTheme}>
         <CssBaseline />
-        <Container  maxWidth="sm">
         <div className="app">
-          <TextField variant="outlined" label="نام" />
+          <Container className="container" maxWidth="md">
+            <TextField variant="outlined" label="نام" />
+          </Container>
         </div>
-        </Container>
       </ThemeProvider>
     </StylesProvider>
   );

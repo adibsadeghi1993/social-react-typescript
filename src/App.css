@@ -1,4 +1,10 @@
 .app{
- 
+ background-color: rgba(46, 46, 44, 0.37);
   height: 100vh;
+  padding-top: 50px;
+}
+.container{
+  background-color: rgba(68, 63, 63, 0.349);
+  padding: 30px 30px;
+  
 }
