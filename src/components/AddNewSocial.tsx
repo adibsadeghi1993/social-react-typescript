@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import TextField from "@material-ui/core/TextField";
 import Box from "@mui/material/Box";
+import { Button } from '@mui/material';
 
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
@@ -35,8 +36,8 @@ const AddNewSocial = (props: Props) => {
   return (
     <form>
       <Box sx={{ display: "flex", width: "100%", alignItems: "center" }}>
-        <Box sx={{display:"flex" ,flexDirection:"column"}}>
-          <FormControl variant="outlined" size="small">
+        <Box sx={{display:"flex" ,flexDirection:"column",flexGrow: 1,width:"28%"}}>
+          <FormControl  fullWidth variant="outlined" size="small">
             <InputLabel margin="dense" id="demo-simple-select-label">
               نوع
             </InputLabel>
@@ -49,7 +50,8 @@ const AddNewSocial = (props: Props) => {
               onChange={handleChange}
               onBlur={handleBlur}
               error={touched.name && Boolean(errors.name)}
-              style={{ width: 230 }}
+              // style={{ width: 230 }}
+              fullWidth
             
             >
               <MenuItem value="instagram">instagram</MenuItem>
@@ -59,7 +61,7 @@ const AddNewSocial = (props: Props) => {
           </FormControl>
           {(errors.name || touched.name )&&<Typography variant="body1" >{errors.name}</Typography > }
         </Box>
-        <Box sx={{ marginRight: 2 }}>
+        <Box sx={{ marginRight: 2 ,flexGrow: 1 }}>
           <TextField
             id="link"
             name="link"
@@ -71,10 +73,11 @@ const AddNewSocial = (props: Props) => {
             variant="outlined"
             onBlur={handleBlur}
             size="small"
-            style={{ width: 230 }}
+            fullWidth
+            // style={{ width: 230 }}
           />
         </Box>
-        <Box sx={{ marginRight: 2 }}>
+        <Box sx={{ marginRight: 2,flexGrow: 1 }}>
           <TextField
             id="name"
             name="id"
@@ -86,9 +89,15 @@ const AddNewSocial = (props: Props) => {
             variant="outlined"
             onBlur={handleBlur}
             size="small"
-            style={{ width: 230 }}
+            fullWidth
+            // style={{ width: 230 }}
           />
         </Box>
+      </Box>
+      <Box sx={{display:"flex", justifyContent: 'flex-end',mt:2}}>
+      <Button  variant='contained'>انصراف</Button>
+      <Button sx={{mr:2}} variant='contained'>ثبت مسیر ارتباطی</Button>
+     
       </Box>
     </form>
   );
