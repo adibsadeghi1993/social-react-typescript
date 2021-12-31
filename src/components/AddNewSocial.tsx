@@ -4,16 +4,19 @@ import * as Yup from "yup";
 import TextField from "@material-ui/core/TextField";
 import Box from "@mui/material/Box";
 import { Button } from '@mui/material';
+import { useDispatch } from "react-redux";
 
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Typography } from "@material-ui/core";
+import { addNewSocial } from "../redux/actions/actions";
 
 interface Props {}
 
 const AddNewSocial = (props: Props) => {
+  const dispatch = useDispatch();
   const { handleChange, handleBlur, values, errors, touched } = useFormik<{
     name: string;
     link: string;
@@ -30,11 +33,12 @@ const AddNewSocial = (props: Props) => {
       name: Yup.string().min(3).max(20).required("is required"),
       link: Yup.string().min(10).max(250).required("is required"),
 
-      id: Yup.number().min(1).required("this is should be number"),
+      id: Yup.string().required("is required"),
     }),
   });
-  const submitHandler=()=>{
-    
+  const submitHandler=(e:React.FormEvent)=>{
+    e.preventDefault()
+    dispatch(addNewSocial({social_type:values.name,social_link:values.link,social_id:values.id}))
   }
   return (
     <form onSubmit={submitHandler}>

@@ -32,12 +32,12 @@ export const requestSocials=():Action=>{
   
 //   }
 // }
-// export const userAdded=():Action=>{
-//   return{
-//     type:actionTypes.ADD_USER,
+export const socialAdded=():Action=>{
+  return{
+    type:actionTypes.ADD_USER_CONTACTS,
   
-//   }
-// }
+  }
+}
 export const getUserContacts=()=>{
     return async(dispatch:Dispatch)=>{
      try {
@@ -63,16 +63,16 @@ export const getUserContacts=()=>{
 //   }
 // }
 
-// export const addNewUserAction=(user:user)=>{
-//   return async(dispatch:Dispatch)=>{
-//    try {
-//        dispatch(requestSocials())
-//        await axios.post(`http://localhost:4000/users`,user)
-//       dispatch(userAdded())
-//       dispatch<any>(getUserAction())
-//    } catch (error) {
-//        dispatch(failedGetUserSocials())
-//    }
-//   }
-// }
+export const addNewSocial=(contact:communicate)=>{
+  return async(dispatch:Dispatch)=>{
+   try {
+       dispatch(requestSocials())
+       await axios.post(`http://localhost:4000/socials`,contact)
+      dispatch(socialAdded())
+      dispatch<any>(getUserContacts())
+   } catch (error) {
+       dispatch(failedGetUserSocials())
+   }
+  }
+}
 

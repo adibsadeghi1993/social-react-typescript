@@ -3,7 +3,7 @@ enum actionTypes{
     FAILED="FAILED",
    LOADING="LOADING",
 //    DELETE_USER="DELETE_USER",
-//    ADD_USER="ADD_USER"
+   ADD_USER_CONTACTS="ADD_USER_CONTACTS"
 }
 
 export default actionTypes
