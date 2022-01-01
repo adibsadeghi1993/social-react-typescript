@@ -55,8 +55,9 @@ const AddNewSocial = ({ setIsShow}: Props) => {
     
   }
   return (
-    <form onSubmit={submitHandler}>
-      <Box sx={{ display: "flex", width: "100%", alignItems: "center" }}>
+    <form style={{padding:"10px 20px"}} onSubmit={submitHandler}>
+      <Typography variant="subtitle2">افزودن راه ارتباطی</Typography>
+      <Box sx={{ display: "flex", width: "100%", alignItems: "center",mt:2 }}>
         <Box sx={{display:"flex" ,flexDirection:"column",flexGrow: 1,width:"28%"}}>
           <FormControl  fullWidth variant="outlined" size="small">
             <InputLabel margin="dense" id="demo-simple-select-label">

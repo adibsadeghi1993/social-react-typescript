@@ -59,9 +59,9 @@ const EditSocial = ({editSocial,setIsEdit,setIsShow}: Props) => {
     setIsShow(false)
   }
   return (
-    <form onSubmit={submitHandler}>
-        <h1>edit social</h1>
-      <Box sx={{ display: "flex", width: "100%", alignItems: "center" }}>
+    <form style={{padding:"10px 20px"}} onSubmit={submitHandler}>
+        <Typography variant="subtitle2">ویرایش مسیر ارتباطی</Typography>
+      <Box sx={{ display: "flex", width: "100%", alignItems: "center",mt:2 }}>
         <Box sx={{display:"flex" ,flexDirection:"column",flexGrow: 1,width:"28%"}}>
           <FormControl  fullWidth variant="outlined" size="small">
             <InputLabel margin="dense" id="demo-simple-select-label">
