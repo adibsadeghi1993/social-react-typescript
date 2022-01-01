@@ -17,9 +17,10 @@ import Modal from '@mui/material/Modal';
 
 interface Props {
   setIsEdit: React.Dispatch<React.SetStateAction<Boolean>>
+  setEditSocial:React.Dispatch<React.SetStateAction<string | null>>
 }
 
-const UserLinks = ({setIsEdit}: Props) => {
+const UserLinks = ({setIsEdit,setEditSocial}: Props) => {
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState("")
@@ -41,6 +42,11 @@ console.log(state)
     setOpenModal(false)
   }
 
+  const editHandler=(id:any)=>{
+    setIsEdit(true)
+    setEditSocial(id)
+  }
+
 
   return <div>
       {state.socials && <div>
@@ -52,7 +58,7 @@ console.log(state)
                    <Typography mr={2}  variant="subtitle2">آی دی : {item.social_id}</Typography>
                    </Box>
                    <Box>
-                   <Box component="span" onClick={()=>setIsEdit(true)}><EditIcon/></Box>
+                   <Box component="span" onClick={()=>editHandler(item.id)}><EditIcon/></Box>
                        <Box onClick={openModalHandler} component="span" sx={{mr:2}}><DeleteForeverIcon/></Box>
                       
                    </Box>

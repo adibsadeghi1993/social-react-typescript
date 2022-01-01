@@ -13,9 +13,11 @@ import Select from "@material-ui/core/Select";
 import { Typography } from "@material-ui/core";
 import { addNewSocial } from "../redux/actions/actions";
 
-interface Props {}
+interface Props {
+    editSocial:string|null
+}
 
-const EditSocial = (props: Props) => {
+const EditSocial = ({editSocial}: Props) => {
   const dispatch = useDispatch();
   const { handleChange, handleBlur, values, errors, touched } = useFormik<{
     name: string;
@@ -42,6 +44,7 @@ const EditSocial = (props: Props) => {
   }
   return (
     <form onSubmit={submitHandler}>
+        <h1>edit social</h1>
       <Box sx={{ display: "flex", width: "100%", alignItems: "center" }}>
         <Box sx={{display:"flex" ,flexDirection:"column",flexGrow: 1,width:"28%"}}>
           <FormControl  fullWidth variant="outlined" size="small">
