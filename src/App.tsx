@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { create } from "jss";
 import rtl from "jss-rtl";
 import Collapse from '@mui/material/Collapse';
@@ -34,7 +34,8 @@ const useStyle = makeStyles({
 });
 
 export default function App() {
-  const [isShow, setIsShow] = React.useState(false);
+  const [isShow, setIsShow] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
   const classes = useStyle();
   return (
     <StylesProvider jss={jss}>
@@ -44,9 +45,9 @@ export default function App() {
           <Container className="container" maxWidth="md">
             <Box onClick={()=>setIsShow(!isShow)} sx={{display:"flex",mb:1,cursor:"pointer"}}>
               <AddIcon sx={{ color:"yellow" }}/>
-              <Typography className={classes.add} variant="subtitle2">
+              {!isEdit && <Typography className={classes.add} variant="subtitle2">
                 افزوردن راه ارتباطی
-              </Typography>
+              </Typography>}
             </Box>
             <Box sx={{backgroundColor:"yellowgreen",mt:2}}>
             <Collapse  in={isShow}>
