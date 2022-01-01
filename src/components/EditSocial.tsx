@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import TextField from "@material-ui/core/TextField";
@@ -18,6 +18,10 @@ interface Props {
 }
 
 const EditSocial = ({editSocial}: Props) => {
+    
+    useEffect(() => {
+       
+    }, [editSocial])
   const dispatch = useDispatch();
   const { handleChange, handleBlur, values, errors, touched } = useFormik<{
     name: string;
