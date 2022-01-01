@@ -11,7 +11,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Typography } from "@material-ui/core";
-import { addNewSocial, getSingleSocial } from "../redux/actions/actions";
+import { addNewSocial, getSingleSocial, updatedSocialAction } from "../redux/actions/actions";
 import {useSelector} from "../hooks/useTypesSelector"
 
 
@@ -49,7 +49,7 @@ const EditSocial = ({editSocial}: Props) => {
   });
   const submitHandler=(e:React.FormEvent)=>{
     e.preventDefault()
-    dispatch(addNewSocial({social_type:values.name,social_link:values.link,social_id:values.id}))
+    dispatch(updatedSocialAction({social_type:values.name,social_link:values.link,social_id:values.id},editSocial))
   }
   return (
     <form onSubmit={submitHandler}>

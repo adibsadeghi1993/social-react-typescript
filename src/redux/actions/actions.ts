@@ -95,7 +95,7 @@ export const getSingleSocial=(id:string)=>{
   }
 }
 
-export const updatedSocial=(social:communicate,id:string)=>{
+export const updatedSocialAction=(social:communicate,id:string)=>{
   return async(dispatch:Dispatch)=>{
    try {
        dispatch(requestSocials())
