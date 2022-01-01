@@ -16,10 +16,12 @@ import {useSelector} from "../hooks/useTypesSelector"
 
 
 interface Props {
-    editSocial:string
+    editSocial:string,
+    setIsEdit:React.Dispatch<React.SetStateAction<Boolean>>,
+   setIsShow:any
 }
 
-const EditSocial = ({editSocial}: Props) => {
+const EditSocial = ({editSocial,setIsEdit,setIsShow}: Props) => {
 
  const {social} = useSelector(state => state.socials)
  const dispatch = useDispatch()
@@ -27,7 +29,10 @@ const EditSocial = ({editSocial}: Props) => {
     useEffect(() => {
        dispatch(getSingleSocial(editSocial))
     }, [editSocial])
- 
+ const cancelEditHandler=()=>{
+  setIsShow(false)
+  setIsEdit(false)
+ }
   const { handleChange, handleBlur, values, errors, touched } = useFormik<{
     name: string;
     link: string;
@@ -50,6 +55,8 @@ const EditSocial = ({editSocial}: Props) => {
   const submitHandler=(e:React.FormEvent)=>{
     e.preventDefault()
     dispatch(updatedSocialAction({social_type:values.name,social_link:values.link,social_id:values.id},editSocial))
+    setIsEdit(false)
+    setIsShow(false)
   }
   return (
     <form onSubmit={submitHandler}>
@@ -114,7 +121,7 @@ const EditSocial = ({editSocial}: Props) => {
         </Box>
       </Box>
       <Box sx={{display:"flex", justifyContent: 'flex-end',mt:2}}>
-      <Button  variant='contained'>انصراف</Button>
+      <Button onClick={cancelEditHandler} variant='contained'>انصراف</Button>
       <Button type="submit"  sx={{mr:2}} variant='contained'>ثبت مسیر ارتباطی</Button>
      
       </Box>

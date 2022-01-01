@@ -62,15 +62,15 @@ export default function App() {
             </Box>
             {!isEdit ?<Box sx={{ backgroundColor: "yellowgreen", mt: 2 }}>
               <Collapse in={isShow}>
-                <AddNewSocial />
+                <AddNewSocial setIsShow={setIsShow} />
               </Collapse>
             </Box>:<Box sx={{ backgroundColor: "yellowgreen", mt: 2 }}>
               <Collapse in={isShow}>
-               <EditSocial editSocial={editSocial}/>
+               <EditSocial setIsShow={setIsShow} setIsEdit={setIsEdit}  editSocial={editSocial}/>
               </Collapse>
             </Box>}
 
-            <UserLinks setEditSocial={setEditSocial} setIsEdit={setIsEdit} />
+            <UserLinks setIsShow={setIsShow} setEditSocial={setEditSocial} setIsEdit={setIsEdit} />
           </Container>
         </div>
       </ThemeProvider>

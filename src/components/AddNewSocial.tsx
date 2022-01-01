@@ -13,11 +13,13 @@ import Select from "@material-ui/core/Select";
 import { Typography } from "@material-ui/core";
 import { addNewSocial } from "../redux/actions/actions";
 
-interface Props {}
+interface Props {
+  setIsShow:any
+}
 
-const AddNewSocial = (props: Props) => {
+const AddNewSocial = ({ setIsShow}: Props) => {
   const dispatch = useDispatch();
-  const { handleChange, handleBlur, values, errors, touched } = useFormik<{
+  const { handleChange, handleBlur, values, errors, touched ,initialValues} = useFormik<{
     name: string;
     link: string;
 
@@ -39,6 +41,18 @@ const AddNewSocial = (props: Props) => {
   const submitHandler=(e:React.FormEvent)=>{
     e.preventDefault()
     dispatch(addNewSocial({social_type:values.name,social_link:values.link,social_id:values.id}))
+    values.name=""
+    values.id=""
+    values.link=""
+    setIsShow(false)
+  }
+  const handleCollapse=()=>{
+    values.name=""
+    values.id=""
+    values.link=""
+    setIsShow(false)
+    
+    
   }
   return (
     <form onSubmit={submitHandler}>
@@ -102,7 +116,7 @@ const AddNewSocial = (props: Props) => {
         </Box>
       </Box>
       <Box sx={{display:"flex", justifyContent: 'flex-end',mt:2}}>
-      <Button  variant='contained'>انصراف</Button>
+      <Button onClick={handleCollapse}  variant='contained'>انصراف</Button>
       <Button type="submit"  sx={{mr:2}} variant='contained'>ثبت مسیر ارتباطی</Button>
      
       </Box>

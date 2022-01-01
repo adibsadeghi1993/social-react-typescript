@@ -18,9 +18,10 @@ import Modal from '@mui/material/Modal';
 interface Props {
   setIsEdit: React.Dispatch<React.SetStateAction<Boolean>>
   setEditSocial:React.Dispatch<React.SetStateAction<string>>
+  setIsShow:any
 }
 
-const UserLinks = ({setIsEdit,setEditSocial}: Props) => {
+const UserLinks = ({setIsEdit,setEditSocial,setIsShow}: Props) => {
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState("")
@@ -40,11 +41,13 @@ console.log(state)
   const deleteSocialHandler=(id:string)=>{
     dispatch(deleteSocialAction(id))
     setOpenModal(false)
+    setConfirmDelete("")
   }
 
   const editHandler=(id:any)=>{
     setIsEdit(true)
     setEditSocial(id)
+    setIsShow(true)
   }
 
 
