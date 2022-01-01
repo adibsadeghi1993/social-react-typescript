@@ -95,3 +95,16 @@ export const getSingleSocial=(id:string)=>{
   }
 }
 
+export const updatedSocial=(social:communicate,id:string)=>{
+  return async(dispatch:Dispatch)=>{
+   try {
+       dispatch(requestSocials())
+      await axios.put(`http://localhost:4000/socials/${id}`,social)
+      dispatch<any>(getUserContacts())
+      
+   } catch (error) {
+       dispatch(failedGetUserSocials())
+   }
+  }
+}
+
