@@ -37,7 +37,7 @@ const useStyle = makeStyles({
 export default function App() {
   const [isShow, setIsShow] = useState(false);
   const [isEdit, setIsEdit] = useState<Boolean>(false);
-  const [editSocial, setEditSocial] = useState<string | null>(null);
+  const [editSocial, setEditSocial] = useState<string>("");
   const classes = useStyle();
   return (
     <StylesProvider jss={jss}>

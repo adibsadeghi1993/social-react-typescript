@@ -38,6 +38,12 @@ export const socialAdded=():Action=>{
   
   }
 }
+export const singleSocial=(social:communicate):Action=>{
+  return{
+    type:actionTypes.SINGLE_SOCIAL,
+    payload:social
+  }
+}
 export const getUserContacts=()=>{
     return async(dispatch:Dispatch)=>{
      try {
@@ -70,6 +76,19 @@ export const addNewSocial=(contact:communicate)=>{
        await axios.post(`http://localhost:4000/socials`,contact)
       dispatch(socialAdded())
       dispatch<any>(getUserContacts())
+   } catch (error) {
+       dispatch(failedGetUserSocials())
+   }
+  }
+}
+
+export const getSingleSocial=(id:string)=>{
+  return async(dispatch:Dispatch)=>{
+   try {
+       dispatch(requestSocials())
+      const {data} = await axios.get(`http://localhost:4000/socials/${id}`)
+      dispatch(singleSocial(data))
+      
    } catch (error) {
        dispatch(failedGetUserSocials())
    }

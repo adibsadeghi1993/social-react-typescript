@@ -17,7 +17,7 @@ import Modal from '@mui/material/Modal';
 
 interface Props {
   setIsEdit: React.Dispatch<React.SetStateAction<Boolean>>
-  setEditSocial:React.Dispatch<React.SetStateAction<string | null>>
+  setEditSocial:React.Dispatch<React.SetStateAction<string>>
 }
 
 const UserLinks = ({setIsEdit,setEditSocial}: Props) => {

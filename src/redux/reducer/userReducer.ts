@@ -24,6 +24,10 @@ const userReducer = (state: State = initialState, action: Action): State => {
       return {...state,socials:action.payload}
     }
 
+    case actionTypes.SINGLE_SOCIAL:{
+      return {...state,social:action.payload}
+    }
+
     default:
       return state;
   }

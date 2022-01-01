@@ -19,9 +19,13 @@ type deletedSocial = {
 type socialAdded = {
   type: actionTypes.ADD_USER_CONTACTS;
 };
+type singleSocial = {
+  type: actionTypes.SINGLE_SOCIAL;
+  payload:communicate
+};
 
 export type Action =
   | getUsersAction
   | loadingUsersAction
-  | failedUsersAction | socialAdded | deletedSocial
+  | failedUsersAction | socialAdded | deletedSocial | singleSocial
 

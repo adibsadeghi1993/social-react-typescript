@@ -11,27 +11,32 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Typography } from "@material-ui/core";
-import { addNewSocial } from "../redux/actions/actions";
+import { addNewSocial, getSingleSocial } from "../redux/actions/actions";
+import {useSelector} from "../hooks/useTypesSelector"
+
 
 interface Props {
-    editSocial:string|null
+    editSocial:string
 }
 
 const EditSocial = ({editSocial}: Props) => {
-    
+
+ const {social} = useSelector(state => state.socials)
+ const dispatch = useDispatch()
+
     useEffect(() => {
-       
+       dispatch(getSingleSocial(editSocial))
     }, [editSocial])
-  const dispatch = useDispatch();
+ 
   const { handleChange, handleBlur, values, errors, touched } = useFormik<{
     name: string;
     link: string;
     id: string;
   }>({
     initialValues: {
-      name: "",
-      link: "",
-      id: "",
+      name:social?.social_type || "",
+      link: social?.social_link || "",
+      id: social?.social_id || "",
     },
     enableReinitialize: true,
     onSubmit: (): void => {},
