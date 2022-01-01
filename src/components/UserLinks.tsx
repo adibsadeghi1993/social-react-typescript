@@ -1,3 +1,4 @@
+import { Box, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "../hooks/useTypesSelector";
@@ -18,11 +19,11 @@ console.log(state)
   return <div>
       {state.socials && <div>
           { state.socials.map((item)=>{
-               return <div key={item.id}>
-                   <p>{item.social_type}</p>
-                   <p>{item.social_link}</p>
-                   <p>{item.social_id}</p>
-               </div>
+               return <Box sx={{display:"flex",mt:2}} key={item.id}>
+                   <Typography variant="subtitle2">راه ارتباطی : {item.social_type}</Typography>
+                   <Typography mr={2} variant="subtitle2"> لینک : {item.social_link}:</Typography>
+                   <Typography mr={2}  variant="subtitle2">آی دی : {item.social_id}</Typography>
+               </Box >
            })}
           
           </div>}

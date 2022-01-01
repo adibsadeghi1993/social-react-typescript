@@ -4,11 +4,11 @@
   padding-top: 50px;
 }
 .container{
-  background-color:#f8acac;
+  background-color:#acf8f4;
   padding: 30px 30px;
 }
 .MuiTypography-body1{
-color: red;
+color: rgb(138, 204, 212);
 font-size: 12px !important;
 margin-top: 5px !important;
 }
