@@ -13,9 +13,9 @@ type loadingUsersAction = {
 type failedUsersAction = {
   type: actionTypes.FAILED;
 };
-// type deleteUserAction = {
-//   type: actionTypes.DELETE_USER;
-// };
+type deletedSocial = {
+  type: actionTypes.DELETE_SOCIAL;
+};
 type socialAdded = {
   type: actionTypes.ADD_USER_CONTACTS;
 };
@@ -23,5 +23,5 @@ type socialAdded = {
 export type Action =
   | getUsersAction
   | loadingUsersAction
-  | failedUsersAction | socialAdded
-//   | deleteUserAction | addUser;
+  | failedUsersAction | socialAdded | deletedSocial
+

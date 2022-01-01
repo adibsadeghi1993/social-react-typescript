@@ -26,12 +26,12 @@ export const requestSocials=():Action=>{
     
     }
 }
-// export const userDeleted=():Action=>{
-//   return{
-//     type:actionTypes.DELETE_USER,
+export const socialDeleted=():Action=>{
+  return{
+    type:actionTypes.DELETE_SOCIAL
   
-//   }
-// }
+  }
+}
 export const socialAdded=():Action=>{
   return{
     type:actionTypes.ADD_USER_CONTACTS,
@@ -50,18 +50,18 @@ export const getUserContacts=()=>{
     }
 }
 
-// export const deleteUserAction=(id:number)=>{
-//   return async(dispatch:Dispatch)=>{
-//    try {
-//        dispatch(requestSocials())
-//        await axios.delete(`http://localhost:4000/users/${id}`)
-//       dispatch(userDeleted())
-//       dispatch<any>(getUserAction())
-//    } catch (error) {
-//        dispatch(failedGetUserSocials())
-//    }
-//   }
-// }
+export const deleteSocialAction=(id:string)=>{
+  return async(dispatch:Dispatch)=>{
+   try {
+       dispatch(requestSocials())
+       await axios.delete(`http://localhost:4000/socials/${id}`)
+      dispatch(socialDeleted())
+      dispatch<any>(getUserContacts())
+   } catch (error) {
+       dispatch(failedGetUserSocials())
+   }
+  }
+}
 
 export const addNewSocial=(contact:communicate)=>{
   return async(dispatch:Dispatch)=>{

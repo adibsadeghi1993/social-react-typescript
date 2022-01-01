@@ -1,5 +1,5 @@
 type communicate={
-    id?:number,
+    id?:string,
     social_type:string,
     social_link:string,
     social_id:string,
