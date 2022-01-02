@@ -15,17 +15,38 @@ import { Typography } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@material-ui/core";
 import AddIcon from "@mui/icons-material/Add";
-import EditIcon from '@mui/icons-material/Edit';
-import { blueGrey,grey } from '@mui/material/colors';
+import EditIcon from "@mui/icons-material/Edit";
+import { blueGrey, grey } from "@mui/material/colors";
 import "./App.css";
 import AddNewSocial from "./components/AddNewSocial";
 import UserLinks from "./components/UserLinks";
 import EditSocial from "./components/EditSocial";
 
+
 // Configure JSS
 const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 
-const rtlTheme = createTheme({ direction: "rtl" });
+const rtlTheme = createTheme({
+  direction: "rtl",
+  typography: {
+    allVariants: {
+      fontFamily: [
+        'vazir',
+        'sans-serif',
+        
+      ].join(','),
+    },
+    },
+    palette: {
+      primary: { main: '#1d2031' },
+      secondary: { main: '#dc0250' },
+      error: { main: '#6E353A' },
+      warning: { main: '#F5EE9E' },
+      info: { main: '#568BFF' },
+      success: { main: '#00B389' },
+      background: { default: '#FDFFFC' }
+    },
+  });
 
 const useStyle = makeStyles({
   add: {
@@ -44,41 +65,79 @@ export default function App() {
     <StylesProvider jss={jss}>
       <ThemeProvider theme={rtlTheme}>
         <CssBaseline />
-        <Box sx={{backgroundColor:`${grey[100]}`,minHeight:"100vh",display:"flex",alignItems:"center"}}>
+        <Box
+          sx={{
+            backgroundColor: `${grey[800]}`,
+            minHeight: "100vh",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
           <Container maxWidth="md">
-           <Box sx={{backgroundColor:`${grey[400]}`,px:2,py:2,borderRadius: 1 }}>
-           <Box
-              onClick={() => setIsShow(!isShow)}
-              sx={{ display: "flex", mb: 1, cursor: "pointer" }}
+            <Box
+              sx={{
+                backgroundColor: `${grey[700]}`,
+                px: 2,
+                py: 2,
+                borderRadius: 1,
+              }}
             >
-              
-              {!isEdit ? (
-                <>
-                <AddIcon sx={{ color: "yellow" }} />
-                <Typography className={classes.add} variant="subtitle1">
-                  افزوردن راه ارتباطی
-                </Typography></>
+              <Box
+                onClick={() => setIsShow(!isShow)}
+                sx={{ display: "flex", mb: 1, cursor: "pointer" }}
+              >
+                {!isEdit ? (
+                  <>
+                    <AddIcon sx={{ color: "yellow" }} />
+                    <Typography className={classes.add} variant="subtitle1">
+                      افزوردن راه ارتباطی
+                    </Typography>
+                  </>
+                ) : (
+                  <>
+                    <EditIcon sx={{ color: "yellow" }} />
+                    <Typography className={classes.add} variant="subtitle1">
+                      ویرایش راه ارتباطی
+                    </Typography>
+                  </>
+                )}
+              </Box>
+              {!isEdit && isShow ? (
+                <Box
+                  sx={{
+                    backgroundColor: `${grey[600]}`,
+                    mt: 2,
+                    borderRadius: 1,
+                  }}
+                >
+                  <Collapse in={isShow}>
+                    <AddNewSocial setIsShow={setIsShow} />
+                  </Collapse>
+                </Box>
               ) : (
-                <>
-                <EditIcon sx={{ color: "yellow" }}/>
-                <Typography className={classes.add} variant="subtitle1">
-                  ویرایش راه ارتباطی
-                </Typography>
-                </>
+                <Box
+                  sx={{
+                    backgroundColor: `${blueGrey.A700}`,
+                    mt: 2,
+                    borderRadius: 1,
+                  }}
+                >
+                  <Collapse in={isShow}>
+                    <EditSocial
+                      setIsShow={setIsShow}
+                      setIsEdit={setIsEdit}
+                      editSocial={editSocial}
+                    />
+                  </Collapse>
+                </Box>
               )}
-            </Box>
-            {!isEdit && isShow ?<Box sx={{ backgroundColor: `${blueGrey.A700}`, mt: 2,borderRadius: 1  }}>
-              <Collapse in={isShow}>
-                <AddNewSocial setIsShow={setIsShow} />
-              </Collapse>
-            </Box>:<Box sx={{ backgroundColor: `${blueGrey.A700}`, mt: 2 ,borderRadius: 1 }}>
-              <Collapse in={isShow}>
-               <EditSocial setIsShow={setIsShow} setIsEdit={setIsEdit}  editSocial={editSocial}/>
-              </Collapse>
-            </Box>}
 
-            <UserLinks setIsShow={setIsShow} setEditSocial={setEditSocial} setIsEdit={setIsEdit} />
-           </Box>
+              <UserLinks
+                setIsShow={setIsShow}
+                setEditSocial={setEditSocial}
+                setIsEdit={setIsEdit}
+              />
+            </Box>
           </Container>
         </Box>
       </ThemeProvider>

@@ -6,7 +6,7 @@ import { useSelector } from "../hooks/useTypesSelector";
 import { deleteSocialAction, getUserContacts } from "../redux/actions/actions";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
-import { yellow, red } from "@mui/material/colors";
+import { yellow, red,grey } from "@mui/material/colors";
 
 import Button from "@mui/material/Button";
 
@@ -64,16 +64,19 @@ const UserLinks = ({ setIsEdit, setEditSocial, setIsShow }: Props) => {
                 key={item.id}
               >
                 <Box sx={{ display: "flex" }}>
-                  <Typography variant="subtitle2">
-                    راه ارتباطی : {item.social_type}
-                  </Typography>
-                  <Typography mr={2} variant="subtitle2">
+                  <Box sx={{ display: "flex" }}>
+                    <Typography variant="body2">راه ارتباطی : </Typography>
+                    <Typography variant="body2">{item.social_type}</Typography>
+                  </Box>
+                  <Box sx={{ display: "flex",mr:2 }}>
+                    <Typography variant="body2">لینک : </Typography>
+                    <Typography variant="body2">{item.social_link}</Typography>
+                  </Box>
+                  <Box sx={{ display: "flex",mr:2 }}>
+                    <Typography variant="body2">ای دی(ID) : </Typography>
+                    <Typography variant="body2">{item.social_id}</Typography>
+                  </Box>
                  
-                    لینک : {item.social_link}:
-                  </Typography>
-                  <Typography mr={2} variant="subtitle2">
-                    آی دی : {item.social_id}
-                  </Typography>
                 </Box>
                 <Box>
                   <Box component="span" onClick={() => editHandler(item.id)}>

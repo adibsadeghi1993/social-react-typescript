@@ -1,14 +1,5 @@
-.app{
- background-color: brown;
-  height: 100vh;
-  padding-top: 50px;
+@font-face {
+  font-family:"vazir" ;
+  src: url("./fonts/IRANSansDN.ttf");
 }
-.container{
-  background-color:#acf8f4;
-  padding: 30px 30px;
-}
-.MuiTypography-body1{
-color: rgb(138, 204, 212);
-font-size: 12px !important;
-margin-top: 5px !important;
-}
+
