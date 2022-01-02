@@ -1,9 +1,9 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import TextField from "@material-ui/core/TextField";
 import Box from "@mui/material/Box";
-import { Button } from '@mui/material';
+import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
 
 import InputLabel from "@material-ui/core/InputLabel";
@@ -11,35 +11,52 @@ import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
 import Select from "@material-ui/core/Select";
 import { Typography } from "@material-ui/core";
-import { addNewSocial, getSingleSocial, updatedSocialAction } from "../redux/actions/actions";
-import {useSelector} from "../hooks/useTypesSelector"
+import {
+  addNewSocial,
+  getSingleSocial,
+  updatedSocialAction,
+} from "../redux/actions/actions";
+import { useSelector } from "../hooks/useTypesSelector";
+import { red, yellow } from "@mui/material/colors";
+import { makeStyles } from "@material-ui/core";
 
-
+const useStyles = makeStyles({
+  button: {
+    "&:hover": {
+      backgroundColor: `${yellow[500]} !important`,
+    },
+  },
+  cancelButton: {
+    "&:hover": {
+      backgroundColor: `${red[500]} !important`,
+    },
+  },
+});
 interface Props {
-    editSocial:string,
-    setIsEdit:React.Dispatch<React.SetStateAction<Boolean>>,
-   setIsShow:any
+  editSocial: string;
+  setIsEdit: React.Dispatch<React.SetStateAction<Boolean>>;
+  setIsShow: any;
 }
 
-const EditSocial = ({editSocial,setIsEdit,setIsShow}: Props) => {
+const EditSocial = ({ editSocial, setIsEdit, setIsShow }: Props) => {
+  const classes = useStyles();
+  const { social } = useSelector((state) => state.socials);
+  const dispatch = useDispatch();
 
- const {social} = useSelector(state => state.socials)
- const dispatch = useDispatch()
-
-    useEffect(() => {
-       dispatch(getSingleSocial(editSocial))
-    }, [editSocial])
- const cancelEditHandler=()=>{
-  setIsShow(false)
-  setIsEdit(false)
- }
+  useEffect(() => {
+    dispatch(getSingleSocial(editSocial));
+  }, [editSocial]);
+  const cancelEditHandler = () => {
+    setIsShow(false);
+    setIsEdit(false);
+  };
   const { handleChange, handleBlur, values, errors, touched } = useFormik<{
     name: string;
     link: string;
     id: string;
   }>({
     initialValues: {
-      name:social?.social_type || "",
+      name: social?.social_type || "",
       link: social?.social_link || "",
       id: social?.social_id || "",
     },
@@ -52,18 +69,34 @@ const EditSocial = ({editSocial,setIsEdit,setIsShow}: Props) => {
       id: Yup.string().required("is required"),
     }),
   });
-  const submitHandler=(e:React.FormEvent)=>{
-    e.preventDefault()
-    dispatch(updatedSocialAction({social_type:values.name,social_link:values.link,social_id:values.id},editSocial))
-    setIsEdit(false)
-    setIsShow(false)
-  }
+  const submitHandler = (e: React.FormEvent) => {
+    e.preventDefault();
+    dispatch(
+      updatedSocialAction(
+        {
+          social_type: values.name,
+          social_link: values.link,
+          social_id: values.id,
+        },
+        editSocial
+      )
+    );
+    setIsEdit(false);
+    setIsShow(false);
+  };
   return (
-    <form style={{padding:"10px 20px"}} onSubmit={submitHandler}>
-        <Typography variant="subtitle2">ویرایش مسیر ارتباطی</Typography>
-      <Box sx={{ display: "flex", width: "100%", alignItems: "center",mt:2 }}>
-        <Box sx={{display:"flex" ,flexDirection:"column",flexGrow: 1,width:"28%"}}>
-          <FormControl  fullWidth variant="outlined" size="small">
+    <form style={{ padding: "10px 20px" }} onSubmit={submitHandler}>
+      <Typography variant="subtitle2">ویرایش مسیر ارتباطی</Typography>
+      <Box sx={{ display: "flex", width: "100%", alignItems: "center", mt: 2 }}>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            flexGrow: 1,
+            width: "28%",
+          }}
+        >
+          <FormControl fullWidth variant="outlined" size="small">
             <InputLabel margin="dense" id="demo-simple-select-label">
               نوع
             </InputLabel>
@@ -76,18 +109,18 @@ const EditSocial = ({editSocial,setIsEdit,setIsShow}: Props) => {
               onChange={handleChange}
               onBlur={handleBlur}
               error={touched.name && Boolean(errors.name)}
-              // style={{ width: 230 }}
               fullWidth
-            
             >
               <MenuItem value="instagram">instagram</MenuItem>
               <MenuItem value="twitter">twitter</MenuItem>
               <MenuItem value="facebook">facebook</MenuItem>
             </Select>
           </FormControl>
-          {(errors.name || touched.name )&&<Typography variant="body1" >{errors.name}</Typography > }
+          {(errors.name || touched.name) && (
+            <Typography variant="body1">{errors.name}</Typography>
+          )}
         </Box>
-        <Box sx={{ marginRight: 2 ,flexGrow: 1 }}>
+        <Box sx={{ marginRight: 2, flexGrow: 1 }}>
           <TextField
             id="link"
             name="link"
@@ -103,7 +136,7 @@ const EditSocial = ({editSocial,setIsEdit,setIsShow}: Props) => {
             // style={{ width: 230 }}
           />
         </Box>
-        <Box sx={{ marginRight: 2,flexGrow: 1 }}>
+        <Box sx={{ marginRight: 2, flexGrow: 1 }}>
           <TextField
             id="name"
             name="id"
@@ -116,14 +149,28 @@ const EditSocial = ({editSocial,setIsEdit,setIsShow}: Props) => {
             onBlur={handleBlur}
             size="small"
             fullWidth
-       
           />
         </Box>
       </Box>
-      <Box sx={{display:"flex", justifyContent: 'flex-end',mt:2}}>
-      <Button onClick={cancelEditHandler} variant='contained'>انصراف</Button>
-      <Button type="submit"  sx={{mr:2}} variant='contained'>ثبت مسیر ارتباطی</Button>
-     
+      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
+        <Button
+          size="small"
+          className={classes.cancelButton}
+          sx={{ backgroundColor: `${red[500]}`, color: "white" }}
+          onClick={cancelEditHandler}
+          variant="contained"
+        >
+          انصراف
+        </Button>
+        <Button
+          type="submit"
+          size="small"
+          className={classes.button}
+          sx={{ backgroundColor: `${yellow[500]}`, color: "black", mr: 2 }}
+          variant="contained"
+        >
+          ویرایش مسیر ارتباطی
+        </Button>
       </Box>
     </form>
   );

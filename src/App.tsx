@@ -15,7 +15,7 @@ import { Typography } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@material-ui/core";
 import AddIcon from "@mui/icons-material/Add";
-
+import { blueGrey,grey } from '@mui/material/colors';
 import "./App.css";
 import AddNewSocial from "./components/AddNewSocial";
 import UserLinks from "./components/UserLinks";
@@ -44,8 +44,9 @@ export default function App() {
       <ThemeProvider theme={rtlTheme}>
         <CssBaseline />
         <div className="app">
-          <Container className="container" maxWidth="md">
-            <Box
+          <Container maxWidth="md">
+           <Box sx={{backgroundColor:`${grey[800]}`,px:2,py:2,borderRadius: 1 }}>
+           <Box
               onClick={() => setIsShow(!isShow)}
               sx={{ display: "flex", mb: 1, cursor: "pointer" }}
             >
@@ -60,17 +61,18 @@ export default function App() {
                 </Typography>
               )}
             </Box>
-            {!isEdit ?<Box sx={{ backgroundColor: "yellowgreen", mt: 2 }}>
+            {!isEdit ?<Box sx={{ backgroundColor: `${grey[600]}`, mt: 2,borderRadius: 1  }}>
               <Collapse in={isShow}>
                 <AddNewSocial setIsShow={setIsShow} />
               </Collapse>
-            </Box>:<Box sx={{ backgroundColor: "yellowgreen", mt: 2 }}>
+            </Box>:<Box sx={{ backgroundColor: `${blueGrey[100]}`, mt: 2 ,borderRadius: 1 }}>
               <Collapse in={isShow}>
                <EditSocial setIsShow={setIsShow} setIsEdit={setIsEdit}  editSocial={editSocial}/>
               </Collapse>
             </Box>}
 
             <UserLinks setIsShow={setIsShow} setEditSocial={setEditSocial} setIsEdit={setIsEdit} />
+           </Box>
           </Container>
         </div>
       </ThemeProvider>
