@@ -154,7 +154,7 @@ const AddNewSocial = ({ setIsShow }: Props) => {
           
           <Box sx={{mt:1}}>
          {(errors.name && touched.name) ? (
-            <Box ><Typography variant="body1">{errors.name}</Typography></Box>
+            <Box ><Typography style={{color:"red"}} variant="body1">{errors.name}</Typography></Box>
           ):null}
          </Box>
         
@@ -180,7 +180,7 @@ const AddNewSocial = ({ setIsShow }: Props) => {
           
           <Box sx={{mt:1}}>
          {(errors.link && touched.link) ? (
-            <Box ><Typography variant="body1">{errors.link}</Typography></Box>
+            <Box ><Typography style={{color:"red"}} variant="body1">{errors.link}</Typography></Box>
           ):null}
          </Box>
         </Box>
@@ -201,7 +201,7 @@ const AddNewSocial = ({ setIsShow }: Props) => {
          </Box>
            <Box >
          {(errors.id && touched.id) ? (
-            <Box ><Typography variant="body1">{errors.id}</Typography></Box>
+            <Box ><Typography style={{color:"red"}} variant="body1">{errors.id}</Typography></Box>
           ):null}
          </Box>
       </Box>

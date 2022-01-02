@@ -15,6 +15,7 @@ import { Typography } from "@material-ui/core";
 import Box from "@mui/material/Box";
 import { makeStyles } from "@material-ui/core";
 import AddIcon from "@mui/icons-material/Add";
+import EditIcon from '@mui/icons-material/Edit';
 import { blueGrey,grey } from '@mui/material/colors';
 import "./App.css";
 import AddNewSocial from "./components/AddNewSocial";
@@ -50,15 +51,20 @@ export default function App() {
               onClick={() => setIsShow(!isShow)}
               sx={{ display: "flex", mb: 1, cursor: "pointer" }}
             >
-              <AddIcon sx={{ color: "yellow" }} />
+              
               {!isEdit ? (
+                <>
+                <AddIcon sx={{ color: "yellow" }} />
                 <Typography className={classes.add} variant="subtitle2">
                   افزوردن راه ارتباطی
-                </Typography>
+                </Typography></>
               ) : (
+                <>
+                <EditIcon sx={{ color: "yellow" }}/>
                 <Typography className={classes.add} variant="subtitle2">
-                  تغییر راه ارتباطی
+                  ویرایش راه ارتباطی
                 </Typography>
+                </>
               )}
             </Box>
             {!isEdit && isShow ?<Box sx={{ backgroundColor: `${blueGrey.A400}`, mt: 2,borderRadius: 1  }}>
