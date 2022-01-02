@@ -1,5 +1,5 @@
-import React from "react";
-import { useFormik } from "formik";
+import React, { useState } from "react";
+import { useFormik, validateYupSchema } from "formik";
 import * as Yup from "yup";
 import TextField from "@material-ui/core/TextField";
 import Box from "@mui/material/Box";
@@ -13,6 +13,7 @@ import Select from "@material-ui/core/Select";
 import { Typography } from "@material-ui/core";
 import { addNewSocial } from "../redux/actions/actions";
 import { makeStyles } from "@material-ui/core";
+import { useSelector } from "../hooks/useTypesSelector";
 
 interface Props {
   setIsShow: any;
@@ -21,21 +22,21 @@ interface Props {
 const useStyles = makeStyles({
   button: {
     "&:hover": {
-      
-        backgroundColor: `${yellow[500] } !important`
-    }
-},
-cancelButton:{
-  "&:hover":{
-    backgroundColor: `${red[500] } !important`
-  }
-}
- 
+      backgroundColor: `${yellow[500]} !important`,
+    },
+  },
+  cancelButton: {
+    "&:hover": {
+      backgroundColor: `${red[500]} !important`,
+    },
+  },
 });
 
 const AddNewSocial = ({ setIsShow }: Props) => {
+  const [error, setError] = useState("");
   const classes = useStyles();
   const dispatch = useDispatch();
+  const { socials } = useSelector((state) => state.socials);
   const { handleChange, handleBlur, values, errors, touched, initialValues } =
     useFormik<{
       name: string;
@@ -58,17 +59,27 @@ const AddNewSocial = ({ setIsShow }: Props) => {
     });
   const submitHandler = (e: React.FormEvent) => {
     e.preventDefault();
-    dispatch(
-      addNewSocial({
-        social_type: values.name,
-        social_link: values.link,
-        social_id: values.id,
-      })
-    );
-    values.name = "";
-    values.id = "";
-    values.link = "";
-    setIsShow(false);
+    for (const item of socials!) {
+      if (
+        item.social_type === values.name &&
+        item.social_link === values.link &&
+        item.social_id === values.id
+      ) {
+        setError("این مسیر ارتباطی وجود دارد");
+      } else {
+        dispatch(
+          addNewSocial({
+            social_type: values.name,
+            social_link: values.link,
+            social_id: values.id,
+          })
+        );
+        values.name = "";
+        values.id = "";
+        values.link = "";
+        setIsShow(false);
+      }
+    }
   };
   const handleCollapse = () => {
     values.name = "";
@@ -78,7 +89,11 @@ const AddNewSocial = ({ setIsShow }: Props) => {
   };
   return (
     <form style={{ padding: "10px 20px" }} onSubmit={submitHandler}>
-      <Typography variant="subtitle2">افزودن راه ارتباطی</Typography>
+      {error ? (
+        <Typography style={{color:"red"}} variant="subtitle2">{error}</Typography>
+      ) : (
+        <Typography style={{color:"yellow"}} variant="subtitle2">افزودن راه ارتباطی</Typography>
+      )}
       <Box sx={{ display: "flex", width: "100%", alignItems: "center", mt: 2 }}>
         <Box
           sx={{
