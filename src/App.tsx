@@ -44,9 +44,9 @@ export default function App() {
     <StylesProvider jss={jss}>
       <ThemeProvider theme={rtlTheme}>
         <CssBaseline />
-        <div className="app">
+        <Box sx={{backgroundColor:`${grey[100]}`,minHeight:"100vh",display:"flex",alignItems:"center"}}>
           <Container maxWidth="md">
-           <Box sx={{backgroundColor:`${grey[800]}`,px:2,py:2,borderRadius: 1 }}>
+           <Box sx={{backgroundColor:`${grey[400]}`,px:2,py:2,borderRadius: 1 }}>
            <Box
               onClick={() => setIsShow(!isShow)}
               sx={{ display: "flex", mb: 1, cursor: "pointer" }}
@@ -55,23 +55,23 @@ export default function App() {
               {!isEdit ? (
                 <>
                 <AddIcon sx={{ color: "yellow" }} />
-                <Typography className={classes.add} variant="subtitle2">
+                <Typography className={classes.add} variant="subtitle1">
                   افزوردن راه ارتباطی
                 </Typography></>
               ) : (
                 <>
                 <EditIcon sx={{ color: "yellow" }}/>
-                <Typography className={classes.add} variant="subtitle2">
+                <Typography className={classes.add} variant="subtitle1">
                   ویرایش راه ارتباطی
                 </Typography>
                 </>
               )}
             </Box>
-            {!isEdit && isShow ?<Box sx={{ backgroundColor: `${blueGrey.A400}`, mt: 2,borderRadius: 1  }}>
+            {!isEdit && isShow ?<Box sx={{ backgroundColor: `${blueGrey.A700}`, mt: 2,borderRadius: 1  }}>
               <Collapse in={isShow}>
                 <AddNewSocial setIsShow={setIsShow} />
               </Collapse>
-            </Box>:<Box sx={{ backgroundColor: `${blueGrey.A400}`, mt: 2 ,borderRadius: 1 }}>
+            </Box>:<Box sx={{ backgroundColor: `${blueGrey.A700}`, mt: 2 ,borderRadius: 1 }}>
               <Collapse in={isShow}>
                <EditSocial setIsShow={setIsShow} setIsEdit={setIsEdit}  editSocial={editSocial}/>
               </Collapse>
@@ -80,7 +80,7 @@ export default function App() {
             <UserLinks setIsShow={setIsShow} setEditSocial={setEditSocial} setIsEdit={setIsEdit} />
            </Box>
           </Container>
-        </div>
+        </Box>
       </ThemeProvider>
     </StylesProvider>
   );
