@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useFormik} from "formik";
 import * as Yup from "yup";
 import TextField from "@material-ui/core/TextField";
@@ -38,11 +38,12 @@ const AddNewSocial = ({ setIsShow }: Props) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { socials } = useSelector((state) => state.socials);
+
+
   const { handleChange, handleBlur, values, errors, touched, isValid } =
     useFormik<{
       name: string;
       link: string;
-
       id: string;
     }>({
       initialValues: {
@@ -62,7 +63,7 @@ const AddNewSocial = ({ setIsShow }: Props) => {
   const submitHandler = (e: React.FormEvent) => {
     console.log("jjjjjjj")
     e.preventDefault();
-    if(socials!.length===0){
+    if(socials.length===0){
       dispatch(
         addNewSocial({
           social_type: values.name,
@@ -109,7 +110,7 @@ const AddNewSocial = ({ setIsShow }: Props) => {
   };
  
  
-  
+  console.log(isValid)
   return (
     <form style={{ padding: "10px 20px" }} onSubmit={submitHandler}>
       {error ? (
