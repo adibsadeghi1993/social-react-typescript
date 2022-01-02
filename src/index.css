@@ -1,8 +1,4 @@
 @font-face {
-    font-family:"adib" ;
-    src: url("./fonts/IRANSansDN.ttf");
-  }
-  
-  body{
-    font-family: "adib";
+    font-family:"vazir" ;
+    src: url("./assets/fonts/Vazir-Regular.woff");
   }

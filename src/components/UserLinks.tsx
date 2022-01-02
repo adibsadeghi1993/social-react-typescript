@@ -54,9 +54,9 @@ const UserLinks = ({ setIsEdit, setEditSocial, setIsShow }: Props) => {
  
 
   return (
-    <div>
+    <Box>
       {state.socials && (
-        <div>
+        <Box>
           {state.socials.map((item) => {
             return (
               <Box
@@ -65,30 +65,33 @@ const UserLinks = ({ setIsEdit, setEditSocial, setIsShow }: Props) => {
               >
                 <Box sx={{ display: "flex" }}>
                   <Box sx={{ display: "flex" }}>
-                    <Typography variant="body2">راه ارتباطی : </Typography>
-                    <Typography variant="body2">{item.social_type}</Typography>
+                    <Typography sx={{fontFamily:"vazir",color:`${grey[400]}`}}  variant="body2">راه ارتباطی  </Typography>
+                    <Typography sx={{color:`${grey[50]}`,mr:1}} variant="body2">{item.social_type}</Typography>
                   </Box>
                   <Box sx={{ display: "flex",mr:2 }}>
-                    <Typography variant="body2">لینک : </Typography>
-                    <Typography variant="body2">{item.social_link}</Typography>
+                    <Typography sx={{fontFamily:"vazir",color:`${grey[400]}`}} variant="body2">ای دی (ID)  </Typography>
+                    <Typography sx={{color:`${grey[50]}`,mr:1}} variant="body2">{item.social_id}</Typography>
                   </Box>
                   <Box sx={{ display: "flex",mr:2 }}>
-                    <Typography variant="body2">ای دی(ID) : </Typography>
-                    <Typography variant="body2">{item.social_id}</Typography>
+                    <Typography sx={{fontFamily:"vazir",color:`${grey[400]}`}} variant="body2">  لینک    </Typography>
+                    <Typography sx={{color:`${yellow[600]}`,mr:1}} variant="body2"> {item.social_link}</Typography>
                   </Box>
+                  
                  
                 </Box>
-                <Box>
-                  <Box component="span" onClick={() => editHandler(item.id)}>
-                    <EditIcon />
+                <Box sx={{display:"flex"}}>
+                  <Box sx={{display:"flex",fontSize:"12px",color:`${yellow[700]}` ,alignItems:"center"}} component="span" onClick={() => editHandler(item.id)}>
+                    <EditIcon  sx={{ fontSize: 17,color:`${yellow[700]}`,marginLeft:"3px" }} />
+                    ویرایش
                   </Box>
                   <Box
                     onClick={()=>openModalHandler(item.id)}
                     component="span"
-                    sx={{ mr: 2 }}
+                    sx={{display:"flex",fontSize:"12px",color:`${red[400]}` ,alignItems:"center", mr:3}}
                    
                   >
-                    <DeleteForeverIcon />
+                    <DeleteForeverIcon sx={{ fontSize: 17,color:`${red[400]}`,marginLeft:"3px" }} />
+                    حذف
                   </Box>
                 </Box>
                 <Modal
@@ -163,11 +166,11 @@ const UserLinks = ({ setIsEdit, setEditSocial, setIsShow }: Props) => {
               </Box>
             );
           })}
-        </div>
+        </Box>
       )}
 
-      <h1>hi</h1>
-    </div>
+      
+    </Box>
   );
 };
 

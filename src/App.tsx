@@ -29,13 +29,9 @@ const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
 const rtlTheme = createTheme({
   direction: "rtl",
   typography: {
-    allVariants: {
-      fontFamily: [
-        'vazir',
-        'sans-serif',
-        
-      ].join(','),
-    },
+   
+      fontFamily:"vazir"
+  
     },
     palette: {
       primary: { main: '#1d2031' },
@@ -90,7 +86,7 @@ export default function App() {
                   <>
                     <AddIcon sx={{ color: "yellow" }} />
                     <Typography className={classes.add} variant="subtitle1">
-                      افزوردن راه ارتباطی
+                      افزودن راه ارتباطی
                     </Typography>
                   </>
                 ) : (
