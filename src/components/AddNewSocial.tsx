@@ -104,8 +104,7 @@ const AddNewSocial = ({ setIsShow }: Props) => {
           sx={{
             display: "flex",
             flexDirection: "column",
-            flexGrow: 1,
-            width: "28%",
+            width: "30%",
           }}
         >
           <FormControl fullWidth variant="outlined" size="small">
