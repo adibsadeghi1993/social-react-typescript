@@ -113,7 +113,7 @@ export default function App() {
               ) : (
                 <Box
                   sx={{
-                    backgroundColor: `${blueGrey.A700}`,
+                    backgroundColor: `${grey[600]}`,
                     mt: 2,
                     borderRadius: 1,
                   }}

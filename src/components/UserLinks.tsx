@@ -60,7 +60,7 @@ const UserLinks = ({ setIsEdit, setEditSocial, setIsShow }: Props) => {
           {state.socials.map((item) => {
             return (
               <Box
-                sx={{ display: "flex", mt: 2, justifyContent: "space-between" }}
+                sx={{ display: "flex", mt: 2, justifyContent: "space-between",backgroundColor:`${grey[600]}`,px:2,py:2 ,  borderRadius: 1,}}
                 key={item.id}
               >
                 <Box sx={{ display: "flex" }}>
