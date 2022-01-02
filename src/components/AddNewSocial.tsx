@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useFormik, validateYupSchema } from "formik";
+import { useFormik} from "formik";
 import * as Yup from "yup";
 import TextField from "@material-ui/core/TextField";
 import Box from "@mui/material/Box";
@@ -34,10 +34,11 @@ const useStyles = makeStyles({
 
 const AddNewSocial = ({ setIsShow }: Props) => {
   const [error, setError] = useState("");
+ 
   const classes = useStyles();
   const dispatch = useDispatch();
   const { socials } = useSelector((state) => state.socials);
-  const { handleChange, handleBlur, values, errors, touched, initialValues } =
+  const { handleChange, handleBlur, values, errors, touched, isValid } =
     useFormik<{
       name: string;
       link: string;
@@ -49,6 +50,7 @@ const AddNewSocial = ({ setIsShow }: Props) => {
         link: "",
         id: "",
       },
+      validateOnMount:true,
       onSubmit: (): void => {},
       validationSchema: Yup.object().shape({
         name: Yup.string().min(3).max(20).required("is required"),
@@ -87,6 +89,9 @@ const AddNewSocial = ({ setIsShow }: Props) => {
     values.link = "";
     setIsShow(false);
   };
+ 
+ 
+  
   return (
     <form style={{ padding: "10px 20px" }} onSubmit={submitHandler}>
       {error ? (
@@ -124,7 +129,7 @@ const AddNewSocial = ({ setIsShow }: Props) => {
               <MenuItem value="facebook">facebook</MenuItem>
             </Select>
           </FormControl>
-          {(errors.name || touched.name) && (
+          {(errors.name && touched.name) && (
             <Typography variant="body1">{errors.name}</Typography>
           )}
         </Box>
@@ -172,6 +177,7 @@ const AddNewSocial = ({ setIsShow }: Props) => {
         </Button>
         <Button
           className={classes.button}
+          disabled={!isValid}
           size="small"
           type="submit"
           sx={{ backgroundColor: `${yellow[500]}`, color: "black", mr: 2 }}
