@@ -1,22 +1,10 @@
 {
   "socials": [
     {
-      "social_type": "instagram",
-      "social_link": "https://twitter.com/mhosseintahe",
-      "social_id": "555555555l.com",
-      "id": 1
-    },
-    {
-      "social_type": "facebook",
-      "social_link": "https://twitter.com/mhosseintahe",
-      "social_id": "adibsadeghi7272@gmail.com",
-      "id": 2
-    },
-    {
       "social_type": "twitter",
       "social_link": "https://twitter.com/mhosseintahe",
-      "social_id": "adibsadeghi7272@gmail.com",
-      "id": 3
+      "social_id": "adibsadeghi7272",
+      "id": 4
     }
   ]
 }

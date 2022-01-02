@@ -50,7 +50,7 @@ const EditSocial = ({ editSocial, setIsEdit, setIsShow }: Props) => {
     setIsShow(false);
     setIsEdit(false);
   };
-  const { handleChange, handleBlur, values, errors, touched } = useFormik<{
+  const { handleChange, handleBlur, values, errors, touched,isValid } = useFormik<{
     name: string;
     link: string;
     id: string;
@@ -86,93 +86,114 @@ const EditSocial = ({ editSocial, setIsEdit, setIsShow }: Props) => {
   };
   return (
     <form style={{ padding: "10px 20px" }} onSubmit={submitHandler}>
-      <Typography variant="subtitle2">ویرایش مسیر ارتباطی</Typography>
-      <Box sx={{ display: "flex", width: "100%", alignItems: "center", mt: 2 }}>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            flexGrow: 1,
-            width: "28%",
-          }}
-        >
-          <FormControl fullWidth variant="outlined" size="small">
-            <InputLabel margin="dense" id="demo-simple-select-label">
-              نوع
-            </InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={values.name}
-              name="name"
-              label="name"
-              onChange={handleChange}
-              onBlur={handleBlur}
-              error={touched.name && Boolean(errors.name)}
-              fullWidth
-            >
-              <MenuItem value="instagram">instagram</MenuItem>
-              <MenuItem value="twitter">twitter</MenuItem>
-              <MenuItem value="facebook">facebook</MenuItem>
-            </Select>
-          </FormControl>
-          {(errors.name || touched.name) && (
-            <Typography variant="body1">{errors.name}</Typography>
-          )}
-        </Box>
-        <Box sx={{ marginRight: 2, flexGrow: 1 }}>
-          <TextField
-            id="link"
-            name="link"
-            label="لینک"
-            value={values.link}
+  
+      <Typography style={{color:"yellow"}} variant="subtitle2">ویرایش راه ارتباطی</Typography>
+   
+    <Box sx={{ display: "flex", width: "100%", mt: 2 }}>
+      <Box
+        sx={{
+          width: "30%",
+        }}
+      >
+       <Box>
+       <FormControl fullWidth variant="outlined" size="small">
+          <InputLabel margin="dense" id="demo-simple-select-label">
+            نوع
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-label"
+            id="demo-simple-select"
+            value={values.name}
+            name="name"
+            label="name"
             onChange={handleChange}
-            error={touched.link && Boolean(errors.link)}
-            helperText={touched.link && errors.link}
-            variant="outlined"
             onBlur={handleBlur}
-            size="small"
-            fullWidth
+            error={touched.name && Boolean(errors.name)}
             // style={{ width: 230 }}
-          />
-        </Box>
-        <Box sx={{ marginRight: 2, flexGrow: 1 }}>
-          <TextField
-            id="name"
-            name="id"
-            label="ای دی"
-            value={values.id}
-            onChange={handleChange}
-            error={touched.id && Boolean(errors.id)}
-            helperText={touched.id && errors.id}
-            variant="outlined"
-            onBlur={handleBlur}
-            size="small"
             fullWidth
-          />
-        </Box>
+          >
+            <MenuItem value="instagram">instagram</MenuItem>
+            <MenuItem value="twitter">twitter</MenuItem>
+            <MenuItem value="facebook">facebook</MenuItem>
+          </Select>
+        </FormControl>
+       </Box>
+        
+        <Box sx={{mt:1}}>
+       {(errors.name && touched.name) ? (
+          <Box ><Typography variant="body1">{errors.name}</Typography></Box>
+        ):null}
+       </Box>
+      
       </Box>
-      <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
-        <Button
+      
+      <Box sx={{ marginRight: 2, flexGrow: 1 }}>
+       <Box>
+       <TextField
+          id="link"
+          name="link"
+          label="لینک"
+          value={values.link}
+          onChange={handleChange}
+          variant="outlined"
+          onBlur={handleBlur}
           size="small"
-          className={classes.cancelButton}
-          sx={{ backgroundColor: `${red[500]}`, color: "white" }}
-          onClick={cancelEditHandler}
-          variant="contained"
-        >
-          انصراف
-        </Button>
-        <Button
-          type="submit"
-          size="small"
-          className={classes.button}
-          sx={{ backgroundColor: `${yellow[500]}`, color: "black", mr: 2 }}
-          variant="contained"
-        >
-          ویرایش مسیر ارتباطی
-        </Button>
+          fullWidth
+        />
+       </Box>
+        
+        <Box sx={{mt:1}}>
+       {(errors.link && touched.link) ? (
+          <Box ><Typography variant="body1">{errors.link}</Typography></Box>
+        ):null}
+       </Box>
       </Box>
-    </form>
+     
+      <Box sx={{ marginRight: 2, flexGrow: 1 }}>
+       <Box sx={{mb:1}}>
+       <TextField
+          id="name"
+          name="id"
+          label="ای دی"
+          value={values.id}
+          onChange={handleChange}
+          variant="outlined"
+          onBlur={handleBlur}
+          size="small"
+          fullWidth
+        />
+       </Box>
+         <Box >
+       {(errors.id && touched.id) ? (
+          <Box ><Typography variant="body1">{errors.id}</Typography></Box>
+        ):null}
+       </Box>
+    </Box>
+         
+      </Box>
+     
+    <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
+      <Button
+        className={classes.cancelButton}
+        size="small"
+        sx={{ backgroundColor: `${red[500]}`, color: "white" }}
+        onClick={cancelEditHandler}
+        variant="contained"
+      >
+        انصراف
+      </Button>
+      <Button
+        className={classes.button}
+        disabled={!isValid}
+        size="small"
+        type="submit"
+        sx={{ backgroundColor: `${yellow[500]}`, color: "black", mr: 2 }}
+        variant="contained"
+      >
+      ویرایش مسیر ارتباطی
+      </Button>
+    </Box>
+  </form>
   );
 };
 

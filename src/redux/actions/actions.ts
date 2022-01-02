@@ -57,6 +57,8 @@ export const getUserContacts=()=>{
 }
 
 export const deleteSocialAction=(id:string)=>{
+  console.log(id)
+  console.log(typeof id)
   return async(dispatch:Dispatch)=>{
    try {
        dispatch(requestSocials())

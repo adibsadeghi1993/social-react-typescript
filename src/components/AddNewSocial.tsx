@@ -60,28 +60,46 @@ const AddNewSocial = ({ setIsShow }: Props) => {
       }),
     });
   const submitHandler = (e: React.FormEvent) => {
+    console.log("jjjjjjj")
     e.preventDefault();
-    for (const item of socials!) {
-      if (
-        item.social_type === values.name &&
-        item.social_link === values.link &&
-        item.social_id === values.id
-      ) {
-        setError("این مسیر ارتباطی وجود دارد");
-      } else {
-        dispatch(
-          addNewSocial({
-            social_type: values.name,
-            social_link: values.link,
-            social_id: values.id,
-          })
-        );
-        values.name = "";
-        values.id = "";
-        values.link = "";
-        setIsShow(false);
+    if(socials!.length===0){
+      dispatch(
+        addNewSocial({
+          social_type: values.name,
+          social_link: values.link,
+          social_id: values.id,
+        })
+      );
+      values.name = "";
+      values.id = "";
+      values.link = "";
+      setIsShow(false);
+    }else{
+      for (const item of socials!) {
+        console.log("in for of")
+        if (
+          item.social_type === values.name &&
+          item.social_link === values.link &&
+          item.social_id === values.id
+        ) {
+          setError("این مسیر ارتباطی وجود دارد");
+        } else {
+          console.log("in else")
+          dispatch(
+            addNewSocial({
+              social_type: values.name,
+              social_link: values.link,
+              social_id: values.id,
+            })
+          );
+          values.name = "";
+          values.id = "";
+          values.link = "";
+          setIsShow(false);
+        }
       }
     }
+    
   };
   const handleCollapse = () => {
     values.name = "";
@@ -99,15 +117,14 @@ const AddNewSocial = ({ setIsShow }: Props) => {
       ) : (
         <Typography style={{color:"yellow"}} variant="subtitle2">افزودن راه ارتباطی</Typography>
       )}
-      <Box sx={{ display: "flex", width: "100%", alignItems: "center", mt: 2 }}>
+      <Box sx={{ display: "flex", width: "100%", mt: 2 }}>
         <Box
           sx={{
-            display: "flex",
-            flexDirection: "column",
             width: "30%",
           }}
         >
-          <FormControl fullWidth variant="outlined" size="small">
+         <Box>
+         <FormControl fullWidth variant="outlined" size="small">
             <InputLabel margin="dense" id="demo-simple-select-label">
               نوع
             </InputLabel>
@@ -128,42 +145,64 @@ const AddNewSocial = ({ setIsShow }: Props) => {
               <MenuItem value="facebook">facebook</MenuItem>
             </Select>
           </FormControl>
-          {(errors.name && touched.name) && (
-            <Typography variant="body1">{errors.name}</Typography>
-          )}
+         </Box>
+          
+          <Box sx={{mt:1}}>
+         {(errors.name && touched.name) ? (
+            <Box ><Typography variant="body1">{errors.name}</Typography></Box>
+          ):null}
+         </Box>
+        
         </Box>
+        
         <Box sx={{ marginRight: 2, flexGrow: 1 }}>
-          <TextField
+         <Box>
+         <TextField
             id="link"
             name="link"
             label="لینک"
             value={values.link}
             onChange={handleChange}
-            error={touched.link && Boolean(errors.link)}
-            helperText={touched.link && errors.link}
+            // error={touched.link && Boolean(errors.link)}
+            // helperText={touched.link && errors.link}
             variant="outlined"
             onBlur={handleBlur}
             size="small"
             fullWidth
             // style={{ width: 230 }}
           />
+         </Box>
+          
+          <Box sx={{mt:1}}>
+         {(errors.link && touched.link) ? (
+            <Box ><Typography variant="body1">{errors.link}</Typography></Box>
+          ):null}
+         </Box>
         </Box>
+       
         <Box sx={{ marginRight: 2, flexGrow: 1 }}>
-          <TextField
+         <Box sx={{mb:1}}>
+         <TextField
             id="name"
             name="id"
             label="ای دی"
             value={values.id}
             onChange={handleChange}
-            error={touched.id && Boolean(errors.id)}
-            helperText={touched.id && errors.id}
             variant="outlined"
             onBlur={handleBlur}
             size="small"
             fullWidth
           />
-        </Box>
+         </Box>
+           <Box >
+         {(errors.id && touched.id) ? (
+            <Box ><Typography variant="body1">{errors.id}</Typography></Box>
+          ):null}
+         </Box>
       </Box>
+           
+        </Box>
+       
       <Box sx={{ display: "flex", justifyContent: "flex-end", mt: 2 }}>
         <Button
           className={classes.cancelButton}
