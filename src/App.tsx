@@ -61,11 +61,11 @@ export default function App() {
                 </Typography>
               )}
             </Box>
-            {!isEdit && isShow ?<Box sx={{ backgroundColor: `${grey[600]}`, mt: 2,borderRadius: 1  }}>
+            {!isEdit && isShow ?<Box sx={{ backgroundColor: `${blueGrey.A400}`, mt: 2,borderRadius: 1  }}>
               <Collapse in={isShow}>
                 <AddNewSocial setIsShow={setIsShow} />
               </Collapse>
-            </Box>:<Box sx={{ backgroundColor: `${blueGrey[100]}`, mt: 2 ,borderRadius: 1 }}>
+            </Box>:<Box sx={{ backgroundColor: `${blueGrey.A400}`, mt: 2 ,borderRadius: 1 }}>
               <Collapse in={isShow}>
                <EditSocial setIsShow={setIsShow} setIsEdit={setIsEdit}  editSocial={editSocial}/>
               </Collapse>

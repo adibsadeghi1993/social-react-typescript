@@ -1,11 +1,16 @@
 {
   "socials": [
     {
-      "social_type": "instagram",
+      "social_type": "twitter",
+      "social_link": "kkkkkkkkkkkkkkkk",
+      "social_id": "saheb@555",
+      "id": 6
+    },
+    {
+      "social_type": "facebook",
       "social_link": "https://twitter.com/mhosseintahe",
-      "social_id": "adibsadeghi7272@gmail.com",
-      "id": 5
+      "social_id": "milad@kkkj",
+      "id": 7
     }
-  
   ]
 }

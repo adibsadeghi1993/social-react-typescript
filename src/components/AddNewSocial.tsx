@@ -63,7 +63,8 @@ const AddNewSocial = ({ setIsShow }: Props) => {
   const submitHandler = (e: React.FormEvent) => {
     console.log("jjjjjjj")
     e.preventDefault();
-    if(socials.length===0){
+    if(socials!?.length===0){
+      console.log("llllllllllllll")
       dispatch(
         addNewSocial({
           social_type: values.name,
@@ -75,6 +76,7 @@ const AddNewSocial = ({ setIsShow }: Props) => {
       values.id = "";
       values.link = "";
       setIsShow(false);
+      return
     }else{
       for (const item of socials!) {
         console.log("in for of")
@@ -84,6 +86,7 @@ const AddNewSocial = ({ setIsShow }: Props) => {
           item.social_id === values.id
         ) {
           setError("این مسیر ارتباطی وجود دارد");
+          return
         } else {
           console.log("in else")
           dispatch(
@@ -97,6 +100,7 @@ const AddNewSocial = ({ setIsShow }: Props) => {
           values.id = "";
           values.link = "";
           setIsShow(false);
+          return
         }
       }
     }
