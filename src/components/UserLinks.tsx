@@ -7,11 +7,16 @@ import { deleteSocialAction, getUserContacts } from "../redux/actions/actions";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import EditIcon from "@mui/icons-material/Edit";
 import { yellow, red,grey } from "@mui/material/colors";
+import {makeStyles} from "@material-ui/core"
+import InstagramIcon from '@mui/icons-material/Instagram';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import FacebookIcon from '@mui/icons-material/Facebook';
 
 import Button from "@mui/material/Button";
 
 import Modal from "@mui/material/Modal";
-import { idText } from "typescript";
+import communicate from "../model/model";
+
 
 interface Props {
   setIsEdit: React.Dispatch<React.SetStateAction<Boolean>>;
@@ -19,13 +24,30 @@ interface Props {
   setIsShow: any;
 }
 
+const useStyle=makeStyles({
+
+  cancelBtn:{
+    backgroundColor:`${red[500]} !important`,
+    "&hover":{
+      backgroundColor:`${red[500]} !important`
+    },
+    fontFamily:"vazir"
+
+  }
+
+})
+
 const UserLinks = ({ setIsEdit, setEditSocial, setIsShow }: Props) => {
+  const classes=useStyle()
   const dispatch = useDispatch();
   const [openModal, setOpenModal] = useState(false);
   const [deleteSocialId, setDeleteSocialId] = useState<string| null>(null);
   const [confirmDelete, setConfirmDelete] = useState("");
 
-  const handleClose = () => setOpenModal(false);
+  const handleClose = () => {
+    setOpenModal(false)
+    setConfirmDelete("")
+  };
   const state = useSelector((state) => state.socials);
   console.log(state);
 
@@ -51,6 +73,29 @@ const UserLinks = ({ setIsEdit, setEditSocial, setIsShow }: Props) => {
     setIsShow(true);
   };
 
+  const checkSocial=(item:communicate)=>{
+    switch (item.social_type) {
+      case "instagram": return <InstagramIcon/>
+      case "twitter": return <TwitterIcon/>
+      case "facebook": return <FacebookIcon/>
+       
+    
+      default:
+        break;
+    }
+  }
+  const checkSocialname=(item:communicate)=>{
+    switch (item.social_type) {
+      case "instagram": return "اینستاگرام"
+      case "twitter": return "تویتر"
+      case "facebook": return "فیسبوک"
+       
+    
+      default:
+        break;
+    }
+  }
+
  
 
   return (
@@ -63,10 +108,10 @@ const UserLinks = ({ setIsEdit, setEditSocial, setIsShow }: Props) => {
                 sx={{ display: "flex", mt: 2, justifyContent: "space-between",backgroundColor:`${grey[600]}`,px:2,py:2 ,  borderRadius: 1,}}
                 key={item.id}
               >
-                <Box sx={{ display: "flex" }}>
-                  <Box sx={{ display: "flex" }}>
-                    <Typography sx={{fontFamily:"vazir",color:`${grey[400]}`}}  variant="body2">راه ارتباطی  </Typography>
-                    <Typography sx={{color:`${grey[50]}`,mr:1}} variant="body2">{item.social_type}</Typography>
+                <Box sx={{ display: "flex",alignItems:"center" }}>
+                  <Box sx={{ display: "flex",alignItems:"center" }}>
+                    <Typography sx={{fontFamily:"vazir",color:`${grey[400]}`}}  variant="body2">{checkSocial(item)}  </Typography>
+                    <Typography sx={{color:`${grey[50]}`,mr:1,fontFamily:"vazir"}} variant="body2">{checkSocialname(item)}</Typography>
                   </Box>
                   <Box sx={{ display: "flex",mr:2 }}>
                     <Typography sx={{fontFamily:"vazir",color:`${grey[400]}`}} variant="body2">ای دی (ID)  </Typography>
@@ -80,14 +125,14 @@ const UserLinks = ({ setIsEdit, setEditSocial, setIsShow }: Props) => {
                  
                 </Box>
                 <Box sx={{display:"flex"}}>
-                  <Box sx={{display:"flex",fontSize:"12px",color:`${yellow[700]}` ,alignItems:"center"}} component="span" onClick={() => editHandler(item.id)}>
+                  <Box sx={{display:"flex",fontSize:"12px",color:`${yellow[700]}` ,alignItems:"center",cursor:"pointer"}} component="span" onClick={() => editHandler(item.id)}>
                     <EditIcon  sx={{ fontSize: 17,color:`${yellow[700]}`,marginLeft:"3px" }} />
                     ویرایش
                   </Box>
                   <Box
                     onClick={()=>openModalHandler(item.id)}
                     component="span"
-                    sx={{display:"flex",fontSize:"12px",color:`${red[400]}` ,alignItems:"center", mr:3}}
+                    sx={{cursor:"pointer",display:"flex",fontSize:"12px",color:`${red[400]}` ,alignItems:"center", mr:3}}
                    
                   >
                     <DeleteForeverIcon sx={{ fontSize: 17,color:`${red[400]}`,marginLeft:"3px" }} />
@@ -116,12 +161,13 @@ const UserLinks = ({ setIsEdit, setEditSocial, setIsShow }: Props) => {
                   >
                     <Typography
                       id="modal-modal-title"
-                      variant="h6"
+                      variant="subtitle1"
                       component="h2"
+                      style={{color:`${red[500]}`,fontFamily:"vazir"}}
                     >
                       حذف لینک ارتباطی
                     </Typography>
-                    <Box sx={{ mt: 1 }}>
+                    <Box sx={{ mt: 2 }}>
                       <TextField
                         id="name"
                         name="id"
@@ -142,17 +188,19 @@ const UserLinks = ({ setIsEdit, setEditSocial, setIsShow }: Props) => {
                     >
                       <Button
                         size="small"
-                        sx={{ ml: 2, backgroundColor: `${red[500]}` }}
+                        sx={{ ml: 2, backgroundColor: `${yellow[500]} !important`,fontFamily:"vazir",color:"black" }}
                         variant="contained"
                         onClick={handleClose}
+                        className={classes.cancelBtn}
                       >
                         انصراف
                       </Button>
                       <Button
                         size="small"
                         sx={{
-                          backgroundColor: `${yellow[500]}`,
-                          color: "black",
+                          backgroundColor: `${red[500]} !important`,
+                          color: "white",
+                          fontFamily:"vazir"
                         }}
                         onClick={ deleteSocialHandler}
                         disabled={confirmDelete === "تایید" ? false : true}

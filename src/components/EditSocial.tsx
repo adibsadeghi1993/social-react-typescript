@@ -109,7 +109,7 @@ const EditSocial = ({ editSocial, setIsEdit, setIsShow }: Props) => {
             onChange={handleChange}
             onBlur={handleBlur}
             error={touched.name && Boolean(errors.name)}
-            // style={{ width: 230 }}
+            style={{color:"white"}}
             fullWidth
           >
             <MenuItem value="instagram">instagram</MenuItem>
@@ -138,6 +138,8 @@ const EditSocial = ({ editSocial, setIsEdit, setIsShow }: Props) => {
           variant="outlined"
           onBlur={handleBlur}
           size="small"
+          
+          inputProps={{ style: { fontFamily: 'vazir', color: 'white',backgroundColor:"transparent"}}}
           fullWidth
         />
        </Box>
@@ -162,6 +164,8 @@ const EditSocial = ({ editSocial, setIsEdit, setIsShow }: Props) => {
           size="small"
           fullWidth
           style={{color:"white"}}
+          
+          inputProps={{ style: { fontFamily: 'vazir', color: 'white'}}}
         />
        </Box>
          <Box >
