@@ -16,7 +16,7 @@ import Box from "@mui/material/Box";
 import { makeStyles } from "@material-ui/core";
 import AddIcon from "@mui/icons-material/Add";
 import EditIcon from "@mui/icons-material/Edit";
-import { blueGrey, grey } from "@mui/material/colors";
+import { blueGrey, grey,yellow ,red} from "@mui/material/colors";
 import "./App.css";
 import AddNewSocial from "./components/AddNewSocial";
 import UserLinks from "./components/UserLinks";
@@ -34,13 +34,9 @@ const rtlTheme = createTheme({
   
     },
     palette: {
-      primary: { main: '#1d2031' },
+      primary: { main: `${yellow[400]}` },
       secondary: { main: '#dc0250' },
-      error: { main: '#6E353A' },
-      warning: { main: '#F5EE9E' },
-      info: { main: '#568BFF' },
-      success: { main: '#00B389' },
-      background: { default: '#FDFFFC' }
+      
     },
   });
 

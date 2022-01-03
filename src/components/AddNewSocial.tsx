@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 import Box from "@mui/material/Box";
 import { Button } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { yellow, red } from "@mui/material/colors";
+import { yellow, red,grey } from "@mui/material/colors";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import FormControl from "@material-ui/core/FormControl";
@@ -19,18 +19,21 @@ interface Props {
   setIsShow: any;
 }
 
-const useStyles = makeStyles({
-  button: {
-    "&:hover": {
-      backgroundColor: `${yellow[500]} !important`,
+const useStyles = makeStyles(theme=>({
+  
+    button: {
+      "&:hover": {
+        backgroundColor: `${yellow[500]} !important`,
+      },
     },
-  },
-  cancelButton: {
-    "&:hover": {
-      backgroundColor: `${red[500]} !important`,
+    cancelButton: {
+      "&:hover": {
+        backgroundColor: `${red[500]} !important`,
+      },
     },
-  },
-});
+  
+})
+);
 
 const AddNewSocial = ({ setIsShow }: Props) => {
   const [error, setError] = useState("");
@@ -139,15 +142,18 @@ const AddNewSocial = ({ setIsShow }: Props) => {
               value={values.name}
               name="name"
               label="name"
+             
               onChange={handleChange}
               onBlur={handleBlur}
               error={touched.name && Boolean(errors.name)}
+              inputProps={{ style: { fontFamily: 'vazir', color: 'white'}}}
               // style={{ width: 230 }}
+              style={{color:"white"}}
               fullWidth
             >
-              <MenuItem value="instagram">instagram</MenuItem>
-              <MenuItem value="twitter">twitter</MenuItem>
-              <MenuItem value="facebook">facebook</MenuItem>
+              <MenuItem  value="instagram">instagram</MenuItem>
+              <MenuItem  value="twitter">twitter</MenuItem>
+              <MenuItem  value="facebook">facebook</MenuItem>
             </Select>
           </FormControl>
          </Box>
@@ -168,13 +174,12 @@ const AddNewSocial = ({ setIsShow }: Props) => {
             label="لینک"
             value={values.link}
             onChange={handleChange}
-            // error={touched.link && Boolean(errors.link)}
-            // helperText={touched.link && errors.link}
             variant="outlined"
             onBlur={handleBlur}
+          
+            inputProps={{ style: { fontFamily: 'vazir', color: 'white'}}}
             size="small"
             fullWidth
-            // style={{ width: 230 }}
           />
          </Box>
           
@@ -196,6 +201,8 @@ const AddNewSocial = ({ setIsShow }: Props) => {
             variant="outlined"
             onBlur={handleBlur}
             size="small"
+           
+            inputProps={{ style: { fontFamily: 'vazir', color: 'white'}}}
             fullWidth
           />
          </Box>
@@ -212,7 +219,7 @@ const AddNewSocial = ({ setIsShow }: Props) => {
         <Button
           className={classes.cancelButton}
           size="small"
-          sx={{ backgroundColor: `${red[500]}`, color: "white" }}
+          sx={{ backgroundColor: `${red[500]}`, color: "white",fontFamily:"vazir" }}
           onClick={handleCollapse}
           variant="contained"
         >
@@ -223,7 +230,7 @@ const AddNewSocial = ({ setIsShow }: Props) => {
           disabled={!isValid}
           size="small"
           type="submit"
-          sx={{ backgroundColor: `${yellow[500]}`, color: "black", mr: 2 }}
+          sx={{ backgroundColor: `${yellow[500]}`, color: "black", mr: 2,fontFamily:"vazir" }}
           variant="contained"
         >
           ثبت مسیر ارتباطی

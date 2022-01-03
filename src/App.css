@@ -1,2 +1,21 @@
+.MuiTextField-root{
+  border-color: rgb(0, 81, 255) !important;
+}
+ .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline{
+  border:1px solid #64e033 !important;
+}
+.MuiOutlinedInput-root{
+  border-color: rgb(193, 233, 62) !important;
+}
+
+.Component-cssNotchedOutline {
+  border-color: rgb(167, 240, 73) !important;
+} 
 
 
+
+
+.MuiFormLabel-root{
+  color: #9e9e9e !important;
+  
+}

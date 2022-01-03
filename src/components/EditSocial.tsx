@@ -161,6 +161,7 @@ const EditSocial = ({ editSocial, setIsEdit, setIsShow }: Props) => {
           onBlur={handleBlur}
           size="small"
           fullWidth
+          style={{color:"white"}}
         />
        </Box>
          <Box >
@@ -176,7 +177,7 @@ const EditSocial = ({ editSocial, setIsEdit, setIsShow }: Props) => {
       <Button
         className={classes.cancelButton}
         size="small"
-        sx={{ backgroundColor: `${red[500]}`, color: "white" }}
+        sx={{ backgroundColor: `${red[500]}`, color: "white",fontFamily:"vazir" }}
         onClick={cancelEditHandler}
         variant="contained"
       >
@@ -187,7 +188,7 @@ const EditSocial = ({ editSocial, setIsEdit, setIsShow }: Props) => {
         disabled={!isValid}
         size="small"
         type="submit"
-        sx={{ backgroundColor: `${yellow[500]}`, color: "black", mr: 2 }}
+        sx={{ backgroundColor: `${yellow[500]}`, color: "black", mr: 2 ,fontFamily:"vazir"}}
         variant="contained"
       >
       ویرایش مسیر ارتباطی
